@@ -1,16 +1,16 @@
+import 'package:calda_app/app/app.dart';
 import 'package:calda_app/model/user.dart';
+import 'package:calda_app/repository/account_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:get_it/get_it.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:logger/logger.dart';
 
-final authManager = AuthManager();
-
-final userProvider = StateProvider<User>((ref) => User());
-
 final authenticateProvider = FutureProvider<User>(
   (ref) async {
-    final _newUser = await authManager.authenticate();
+    final _newUser =
+        await GetIt.instance.get<AccountRepository>().authenticate();
     ref.read(userProvider).state = _newUser;
     return _newUser;
   },
@@ -35,12 +35,5 @@ class SplashPage extends HookWidget {
         color: Colors.red,
       );
     });
-  }
-}
-
-class AuthManager {
-  Future<User> authenticate() async {
-    await Future.delayed(Duration(milliseconds: 500));
-    return User(uid: 'hogehoge');
   }
 }
