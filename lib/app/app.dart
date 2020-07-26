@@ -1,6 +1,8 @@
 import 'package:bot_toast/bot_toast.dart';
+import 'package:calda_app/config/app_themes.dart';
 import 'package:calda_app/model/user.dart';
 import 'package:calda_app/pages/splash_page.dart';
+import 'package:calda_app/pages/welcome/welcome_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -13,7 +15,35 @@ class App extends HookWidget {
     return MaterialApp(
       builder: BotToastInit(),
       navigatorObservers: [BotToastNavigatorObserver()],
-      home: SplashPage(),
+      onGenerateRoute: (setting) {
+        switch (setting.name) {
+          case WelcomePage.routeName:
+            return _buildPage(
+              theme: WelcomeTheme(),
+              page: SplashPage(),
+            );
+          default:
+            return MaterialPageRoute(
+              builder: (context) {
+                return Container();
+              },
+            );
+        }
+      },
     );
+  }
+
+  _buildPage({
+    @required AppTheme theme,
+    @required Widget page,
+  }) {
+    return MaterialPageRoute(builder: (context) {
+      return Theme(
+        data: Theme.of(context).brightness == Brightness.dark
+            ? theme.darkTheme
+            : theme.lightTheme,
+        child: page,
+      );
+    });
   }
 }
