@@ -23,10 +23,10 @@ dependencies:
   json_annotation:
   get_it:
 
-  #  # Firebase
-  #  firebase_core:
-  #  firebase_auth:
-  #  cloud_firestore:
+  # Firebase
+  firebase_core:
+  firebase_auth:
+  cloud_firestore:
 
   # Debug
   logger:
