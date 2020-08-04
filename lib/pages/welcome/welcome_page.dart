@@ -1,3 +1,4 @@
+import 'package:calda_app/pages/signin/signin_page.dart';
 import 'package:calda_app/pages/signup/signup_page.dart';
 import 'package:calda_app/widget/submit_rounded_btn.dart';
 import 'package:flutter/gestures.dart';
@@ -74,8 +75,8 @@ class WelcomePage extends HookWidget {
                                     ),
                             recognizer: TapGestureRecognizer()
                               ..onTap = () {
-//                            Navigator.of(context)
-//                                .pushNamed(EmailSignInPage.routeName);
+                                Navigator.of(context)
+                                    .pushNamed(SignInPage.routeName);
                               },
                           ),
                         ],
