@@ -15,7 +15,15 @@ abstract class SignUpFormState with _$SignUpFormState {
 class SignUpStateNotifier extends StateNotifier<SignUpFormState> {
   SignUpStateNotifier() : super(const SignUpFormState());
 
-  onEmailChanged(String email) {}
+  onEmailChanged(String email) {
+    state = state.copyWith(
+      email: email,
+    );
+  }
 
-  onPasswordChanged() {}
+  onPasswordChanged(String password) {
+    state = state.copyWith(
+      password: password,
+    );
+  }
 }

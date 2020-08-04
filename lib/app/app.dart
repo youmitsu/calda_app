@@ -1,6 +1,7 @@
 import 'package:bot_toast/bot_toast.dart';
 import 'package:calda_app/config/app_themes.dart';
 import 'package:calda_app/model/user.dart';
+import 'package:calda_app/pages/home/home_page.dart';
 import 'package:calda_app/pages/signin/signin_page.dart';
 import 'package:calda_app/pages/signup/signup_page.dart';
 import 'package:calda_app/pages/splash_page.dart';
@@ -33,6 +34,11 @@ class App extends HookWidget {
             return _buildPage(
               theme: HomeTheme(),
               page: SignInPage(),
+            );
+          case HomePage.routeName:
+            return _buildPage(
+              theme: HomeTheme(),
+              page: HomePage(),
             );
           default:
             return MaterialPageRoute(
