@@ -2,12 +2,19 @@ import 'package:calda_app/widget/submit_rounded_btn.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+
+import 'state/signup_form_state.dart';
+
+final _signUpStateNotifier =
+    StateNotifierProvider((_) => SignUpStateNotifier());
 
 class SignUpPage extends HookWidget {
   static const String routeName = '/signup';
 
   @override
   Widget build(BuildContext context) {
+    final formState = useProvider(_signUpStateNotifier.state);
     return Scaffold(
       appBar: AppBar(
         title: Text('新規登録'),

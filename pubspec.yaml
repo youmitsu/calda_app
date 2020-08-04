@@ -22,6 +22,7 @@ dependencies:
   hooks_riverpod:
   json_annotation:
   get_it:
+  freezed:
 
   # Firebase
   firebase_core:
