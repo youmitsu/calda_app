@@ -28,7 +28,7 @@ class SubmitRoundedBtn extends StatelessWidget {
           child: Center(
             child: Text(
               text,
-              style: Theme.of(context).textTheme.subtitle1.copyWith(
+              style: Theme.of(context).textTheme.headline6.copyWith(
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
                   ),

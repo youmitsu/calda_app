@@ -59,12 +59,6 @@ class BaseTheme with AppTheme {
           brightness: Brightness.dark,
           color: Colors.transparent,
           elevation: 0,
-          textTheme: TextTheme(
-            headline1: TextStyle(
-              fontSize: 18,
-              color: TextColor.white,
-            ),
-          ),
           iconTheme: IconThemeData(
             color: ButtonColor.white,
           ),
@@ -81,12 +75,6 @@ class BaseTheme with AppTheme {
           brightness: Brightness.light,
           color: Colors.transparent,
           elevation: 0,
-          textTheme: TextTheme(
-            headline1: TextStyle(
-              fontSize: 18,
-              color: TextColor.black,
-            ),
-          ),
           iconTheme: IconThemeData(
             color: ButtonColor.black,
           ),
@@ -100,7 +88,7 @@ class BaseTheme with AppTheme {
 class WelcomeTheme extends BaseTheme {
   @override
   ThemeData get darkTheme => super.darkTheme.copyWith(
-        scaffoldBackgroundColor: Colors.transparent,
+        scaffoldBackgroundColor: Colors.black,
         appBarTheme: AppBarTheme(
           color: Colors.transparent,
         ),
@@ -108,7 +96,7 @@ class WelcomeTheme extends BaseTheme {
 
   @override
   ThemeData get lightTheme => super.lightTheme.copyWith(
-        scaffoldBackgroundColor: Colors.transparent,
+        scaffoldBackgroundColor: Colors.white,
         appBarTheme: AppBarTheme(
           color: Colors.transparent,
         ),
@@ -119,10 +107,16 @@ class HomeTheme extends BaseTheme {
   @override
   ThemeData get darkTheme => super.darkTheme.copyWith(
         scaffoldBackgroundColor: BackgroundColor.dark,
+        appBarTheme: AppBarTheme(
+          color: BackgroundColor.light,
+        ),
       );
 
   @override
   ThemeData get lightTheme => super.lightTheme.copyWith(
         scaffoldBackgroundColor: BackgroundColor.light,
+        appBarTheme: AppBarTheme(
+          color: BackgroundColor.dark,
+        ),
       );
 }

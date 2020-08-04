@@ -1,3 +1,4 @@
+import 'package:calda_app/pages/signup/signup_page.dart';
 import 'package:calda_app/widget/submit_rounded_btn.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -27,7 +28,6 @@ class WelcomePage extends HookWidget {
                   Text(
                     'CaLDaへようこそ',
                     style: Theme.of(context).textTheme.headline2.copyWith(
-                          color: Colors.white,
                           letterSpacing: 2,
                         ),
                     textAlign: TextAlign.center,
@@ -38,7 +38,6 @@ class WelcomePage extends HookWidget {
                   Text(
                     '自宅でダーツを楽しもう',
                     style: Theme.of(context).textTheme.headline5.copyWith(
-                          color: Colors.white,
                           height: 1.35,
                           letterSpacing: 1.52,
                         ),
@@ -50,13 +49,9 @@ class WelcomePage extends HookWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
                   SubmitRoundedBtn(
-                    text: 'メールアドレスで登録',
+                    text: '新規登録',
                     onTap: () {
-//                  pageController.animateToPage(
-//                    1,
-//                    duration: const Duration(milliseconds: 300),
-//                    curve: Curves.linear,
-//                  );
+                      Navigator.of(context).pushNamed(SignUpPage.routeName);
                     },
                   ),
                   const SizedBox(
@@ -69,16 +64,12 @@ class WelcomePage extends HookWidget {
                         children: [
                           TextSpan(
                             text: '登録ずみの方は',
-                            style:
-                                Theme.of(context).textTheme.subtitle1.copyWith(
-                                      color: Colors.white,
-                                    ),
+                            style: Theme.of(context).textTheme.subtitle1,
                           ),
                           TextSpan(
                             text: ' ログイン ',
                             style:
                                 Theme.of(context).textTheme.subtitle1.copyWith(
-                                      color: Colors.white,
                                       decoration: TextDecoration.underline,
                                     ),
                             recognizer: TapGestureRecognizer()
