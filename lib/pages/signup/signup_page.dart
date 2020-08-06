@@ -1,3 +1,4 @@
+import 'package:bot_toast/bot_toast.dart';
 import 'package:calda_app/pages/home/home_page.dart';
 import 'package:calda_app/widget/submit_rounded_btn.dart';
 import 'package:flutter/material.dart';
@@ -20,10 +21,12 @@ class SignUpPage extends HookWidget {
         title: Text('新規登録'),
       ),
       body: Container(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+        child: Stack(
           children: <Widget>[
             _EmailForm(),
+            Positioned.fill(
+              child: _LoadingWidget(),
+            ),
 //            Positioned(
 //              bottom: 0,
 //              left: 0,
@@ -31,6 +34,25 @@ class SignUpPage extends HookWidget {
 //              child: _OtherLoginProviderGroup(),
 //            )
           ],
+        ),
+      ),
+    );
+  }
+}
+
+class _LoadingWidget extends HookWidget {
+  @override
+  Widget build(BuildContext context) {
+    final state = useProvider(_signUpStateNotifier.state);
+    return Container(
+      child: Visibility(
+        visible: state.isLoading,
+        child: Center(
+          child: SizedBox(
+            width: 50,
+            height: 50,
+            child: CircularProgressIndicator(),
+          ),
         ),
       ),
     );
@@ -46,7 +68,6 @@ class _EmailForm extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final formStateNotifier = useProvider(_signUpStateNotifier);
-    final formState = useProvider(_signUpStateNotifier.state);
     return FormBuilder(
       key: _formKey,
       initialValue: {
@@ -54,7 +75,7 @@ class _EmailForm extends HookWidget {
         passwordFormAttr: '',
       },
       child: Container(
-        margin: const EdgeInsets.symmetric(horizontal: 20),
+        margin: const EdgeInsets.all(20),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
@@ -111,13 +132,18 @@ class _EmailForm extends HookWidget {
 class _SignUpBtn extends HookWidget {
   @override
   Widget build(BuildContext context) {
+    final notifier = useProvider(_signUpStateNotifier);
     return SubmitRoundedBtn(
       text: '登録する',
-      onTap: () {
-        Navigator.of(context).pushNamedAndRemoveUntil(
-          HomePage.routeName,
-          (_) => false,
-        );
+      onTap: () async {
+        if (await notifier.signUp()) {
+          Navigator.of(context).pushNamedAndRemoveUntil(
+            HomePage.routeName,
+            (_) => false,
+          );
+        } else {
+          BotToast.showText(text: '登録に失敗しました');
+        }
       },
     );
   }
