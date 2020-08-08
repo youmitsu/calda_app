@@ -108,7 +108,16 @@ class HomeTheme extends BaseTheme {
   ThemeData get darkTheme => super.darkTheme.copyWith(
         scaffoldBackgroundColor: BackgroundColor.dark,
         appBarTheme: AppBarTheme(
-          color: BackgroundColor.light,
+          brightness: Brightness.dark,
+          color: Colors.transparent,
+          elevation: 0,
+          actionsIconTheme: IconThemeData(
+            color: Colors.white,
+          ),
+          iconTheme: IconThemeData(
+            color: Colors.white,
+          ),
+          textTheme: super.darkTheme.textTheme,
         ),
       );
 
@@ -116,7 +125,16 @@ class HomeTheme extends BaseTheme {
   ThemeData get lightTheme => super.lightTheme.copyWith(
         scaffoldBackgroundColor: BackgroundColor.light,
         appBarTheme: AppBarTheme(
-          color: BackgroundColor.dark,
+          brightness: Brightness.light,
+          color: Colors.transparent,
+          elevation: 0,
+          actionsIconTheme: IconThemeData(
+            color: Colors.black,
+          ),
+          iconTheme: IconThemeData(
+            color: Colors.black,
+          ),
+          textTheme: super.lightTheme.textTheme,
         ),
       );
 }

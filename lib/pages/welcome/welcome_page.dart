@@ -7,7 +7,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 
 class WelcomePage extends HookWidget {
   static const double verticalMargin = 170;
-  static const String routeName = '/';
+  static const String routeName = '/welcome';
 
   @override
   Widget build(BuildContext context) {
