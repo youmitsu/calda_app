@@ -15,6 +15,7 @@ dependencies:
   bot_toast:
   flutter_form_builder:
   adaptive_dialog:
+  flutter_speed_dial:
 
   # Architecture
   state_notifier:
