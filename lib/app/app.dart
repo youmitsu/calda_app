@@ -9,6 +9,7 @@ import 'package:calda_app/pages/welcome/welcome_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final userProvider = StateProvider<FirebaseUser>((ref) => null);
@@ -19,6 +20,15 @@ class App extends HookWidget {
     return MaterialApp(
       builder: BotToastInit(),
       navigatorObservers: [BotToastNavigatorObserver()],
+      localizationsDelegates: [
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+      ],
+      supportedLocales: [
+        Locale('ja', 'JP'),
+      ],
       onGenerateRoute: (setting) {
         switch (setting.name) {
           case SplashPage.routeName:

@@ -15,17 +15,16 @@ class HomePage extends HookWidget {
     final homeState = useProvider(_homeStateNotifier.state);
     final stateNotifier = useProvider(_homeStateNotifier);
     return Scaffold(
-      appBar: AppBar(
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(Icons.settings),
-            onPressed: () {
-              Navigator.of(context).pushNamed(SettingsPage.routeName);
-            },
-          ),
-        ],
+      body: Container(
+        child: IndexedStack(
+          index: homeState.currentBottomTabIndex,
+          children: <Widget>[
+            _GameSelectionTab(),
+            _ResultTab(),
+            _ProfileTab(),
+          ],
+        ),
       ),
-      body: Container(),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: homeState.currentBottomTabIndex,
         onTap: (item) {
@@ -33,7 +32,7 @@ class HomePage extends HookWidget {
         },
         items: [
           BottomNavigationBarItem(
-            title: Text('ゲームをする'),
+            title: Text('ゲームを始める'),
             icon: Icon(Icons.videogame_asset),
           ),
           BottomNavigationBarItem(
@@ -45,6 +44,72 @@ class HomePage extends HookWidget {
             icon: Icon(Icons.person),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class _GameSelectionTab extends HookWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('ゲームを始める'),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.settings),
+            onPressed: () {
+              Navigator.of(context).pushNamed(SettingsPage.routeName);
+            },
+          ),
+        ],
+      ),
+      body: Container(
+        color: Colors.green,
+      ),
+    );
+  }
+}
+
+class _ResultTab extends HookWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('戦績'),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.settings),
+            onPressed: () {
+              Navigator.of(context).pushNamed(SettingsPage.routeName);
+            },
+          ),
+        ],
+      ),
+      body: Container(
+        color: Colors.blue,
+      ),
+    );
+  }
+}
+
+class _ProfileTab extends HookWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('プロフィール'),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.settings),
+            onPressed: () {
+              Navigator.of(context).pushNamed(SettingsPage.routeName);
+            },
+          ),
+        ],
+      ),
+      body: Container(
+        color: Colors.red,
       ),
     );
   }
