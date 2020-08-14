@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import 'game_selection_tab.dart';
+
 final _homeStateNotifier = StateNotifierProvider((_) => HomeStateNotifier());
 
 class HomePage extends HookWidget {
@@ -19,7 +21,7 @@ class HomePage extends HookWidget {
         child: IndexedStack(
           index: homeState.currentBottomTabIndex,
           children: <Widget>[
-            _GameSelectionTab(),
+            GameSelectionTab(),
             _ResultTab(),
             _ProfileTab(),
           ],
@@ -44,28 +46,6 @@ class HomePage extends HookWidget {
             icon: Icon(Icons.person),
           ),
         ],
-      ),
-    );
-  }
-}
-
-class _GameSelectionTab extends HookWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('ゲームを始める'),
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(Icons.settings),
-            onPressed: () {
-              Navigator.of(context).pushNamed(SettingsPage.routeName);
-            },
-          ),
-        ],
-      ),
-      body: Container(
-        color: Colors.green,
       ),
     );
   }
