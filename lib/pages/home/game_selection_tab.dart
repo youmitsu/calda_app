@@ -20,14 +20,37 @@ class GameSelectionTab extends HookWidget {
         ],
       ),
       body: Container(
-        margin: const EdgeInsets.symmetric(vertical: 20),
+        margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
         child: SingleChildScrollView(
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.center,
-            children: _buildCards(),
+            children: [
+              Container(
+                alignment: Alignment.centerLeft,
+                margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 8),
+                child: Text(
+                  'GAME',
+                  style: Theme.of(context).textTheme.headline6,
+                ),
+              ),
+              _GameTypeSection(),
+            ],
           ),
         ),
       ),
+    );
+  }
+}
+
+class _GameTypeSection extends HookWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Wrap(
+      alignment: WrapAlignment.start,
+      children: <Widget>[
+        ..._buildCards(),
+      ],
     );
   }
 
@@ -43,10 +66,6 @@ class _GameTypeCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      margin: const EdgeInsets.symmetric(
-        horizontal: 14,
-        vertical: 10,
-      ),
       child: Material(
         borderRadius: BorderRadius.circular(2),
         child: InkWell(
@@ -55,22 +74,14 @@ class _GameTypeCard extends StatelessWidget {
           },
           child: Container(
             height: 90,
-            child: Row(
-              children: <Widget>[
-                Expanded(
-                  child: Container(
-                    margin: const EdgeInsets.only(left: 20),
-                    alignment: Alignment.center,
-                    child: Text(
-                      type.toDisplayStr(),
-                      style: Theme.of(context).textTheme.headline2.copyWith(
-                            fontWeight: FontWeight.bold,
-                            letterSpacing: 1,
-                          ),
-                    ),
+            width: 110,
+            alignment: Alignment.center,
+            child: Text(
+              type.toDisplayStr(),
+              style: Theme.of(context).textTheme.headline2.copyWith(
+                    fontWeight: FontWeight.bold,
+                    letterSpacing: 1,
                   ),
-                ),
-              ],
             ),
           ),
         ),
