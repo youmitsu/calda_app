@@ -88,5 +88,6 @@ class TextColor {
 class ButtonColor {
   static const Color black = _AllColors.black;
   static const Color white = _AllColors.white;
+  static const Color grey = _AllColors.grey111111;
   static const Color orange = _AllColors.orangeFFC289;
 }

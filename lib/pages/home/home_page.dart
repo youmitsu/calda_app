@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import 'game_selection_tab.dart';
+import 'game/game_selection_tab.dart';
 
 final _homeStateNotifier = StateNotifierProvider((_) => HomeStateNotifier());
 

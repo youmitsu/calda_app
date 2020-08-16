@@ -50,6 +50,8 @@ class BaseTheme with AppTheme {
     floatingActionButtonTheme: FloatingActionButtonThemeData(
       backgroundColor: ButtonColor.orange,
     ),
+    buttonColor: ButtonColor.orange,
+    disabledColor: ButtonColor.grey,
   );
 
   @override
