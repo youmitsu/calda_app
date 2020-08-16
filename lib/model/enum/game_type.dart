@@ -29,3 +29,10 @@ extension GameTypeExt on GameType {
     }
   }
 }
+
+enum PlayerType {
+  player_1,
+  player_2,
+  player_3,
+  player_4,
+}
