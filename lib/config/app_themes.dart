@@ -67,6 +67,32 @@ class BaseTheme with AppTheme {
           actionsIconTheme: IconThemeData(
             color: ButtonColor.white,
           ),
+          textTheme: commonThemeData.textTheme.copyWith(
+            headline1: TextStyle(
+              color: TextColor.black,
+            ),
+            headline2: TextStyle(
+              color: TextColor.black,
+            ),
+            headline3: TextStyle(
+              color: TextColor.white,
+            ),
+            headline4: TextStyle(
+              color: TextColor.white,
+            ),
+            headline5: TextStyle(
+              color: TextColor.grey111111,
+            ),
+            headline6: TextStyle(
+              color: TextColor.grey333333,
+            ),
+            bodyText1: TextStyle(
+              color: TextColor.grey666666,
+            ),
+            bodyText2: TextStyle(
+              color: TextColor.grey999999,
+            ),
+          ),
         ),
       );
 
@@ -82,6 +108,32 @@ class BaseTheme with AppTheme {
           ),
           actionsIconTheme: IconThemeData(
             color: ButtonColor.black,
+          ),
+          textTheme: commonThemeData.textTheme.copyWith(
+            headline1: TextStyle(
+              color: TextColor.white,
+            ),
+            headline2: TextStyle(
+              color: TextColor.black,
+            ),
+            headline3: TextStyle(
+              color: TextColor.black,
+            ),
+            headline4: TextStyle(
+              color: TextColor.white,
+            ),
+            headline5: TextStyle(
+              color: TextColor.white,
+            ),
+            headline6: TextStyle(
+              color: TextColor.white,
+            ),
+            bodyText1: TextStyle(
+              color: TextColor.grey999999,
+            ),
+            bodyText2: TextStyle(
+              color: TextColor.grey999999,
+            ),
           ),
         ),
       );
@@ -138,5 +190,59 @@ class HomeTheme extends BaseTheme {
           ),
           textTheme: super.lightTheme.textTheme,
         ),
+      );
+}
+
+extension TextThemeWrapper on TextTheme {
+  TextStyle get light000000DarkFFFFFF => this.headline1;
+
+  TextStyle get light000000Dark000000 => this.headline2;
+
+  TextStyle get lightFFFFFFDark000000 => this.headline3;
+
+  TextStyle get lightFFFFFFDarkFFFFFF => this.headline4;
+
+  TextStyle get light111111DarkFFFFFF => this.headline5;
+
+  TextStyle get light333333DarkFFFFFF => this.headline6;
+
+  TextStyle get light666666Dark999999 => this.bodyText1;
+
+  TextStyle get light999999Dark999999 => this.bodyText2;
+}
+
+extension TextStyleWrapper on TextStyle {
+  TextStyle get fontSize30 => this.copyWith(
+        fontSize: 30,
+      );
+  TextStyle get fontSize28 => this.copyWith(
+        fontSize: 28,
+      );
+  TextStyle get fontSize24 => this.copyWith(
+        fontSize: 24,
+      );
+  TextStyle get fontSize22 => this.copyWith(
+        fontSize: 22,
+      );
+  TextStyle get fontSize20 => this.copyWith(
+        fontSize: 20,
+      );
+  TextStyle get fontSize18 => this.copyWith(
+        fontSize: 18,
+      );
+  TextStyle get fontSize16 => this.copyWith(
+        fontSize: 16,
+      );
+  TextStyle get fontSize14 => this.copyWith(
+        fontSize: 14,
+      );
+  TextStyle get fontSize12 => this.copyWith(
+        fontSize: 12,
+      );
+  TextStyle get fontSize11 => this.copyWith(
+        fontSize: 11,
+      );
+  TextStyle get fontSize10 => this.copyWith(
+        fontSize: 10,
       );
 }

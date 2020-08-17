@@ -1,4 +1,5 @@
 import 'package:calda_app/config/app_colors.dart';
+import 'package:calda_app/config/app_themes.dart';
 import 'package:calda_app/model/enum/game_type.dart';
 import 'package:calda_app/pages/home/game/state/game_selection_tab_state.dart';
 import 'package:calda_app/pages/settings/settings_page.dart';
@@ -76,7 +77,7 @@ class GameSelectionTab extends HookWidget {
     if (isValid) {
       return Theme.of(context).buttonColor;
     }
-    return Theme.of(context).disabledColor;
+    return Theme.of(context).disabledColor.withOpacity(0.2);
   }
 }
 
@@ -118,7 +119,11 @@ class _GameTypeCard extends HookWidget {
             color: _getColor(state.gameType),
             child: Text(
               type.toDisplayStr(),
-              style: Theme.of(context).textTheme.headline2.copyWith(
+              style: Theme.of(context)
+                  .textTheme
+                  .light000000Dark000000
+                  .fontSize28
+                  .copyWith(
                     fontWeight: FontWeight.bold,
                     letterSpacing: 1,
                   ),
