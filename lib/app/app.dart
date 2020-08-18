@@ -1,6 +1,6 @@
 import 'package:bot_toast/bot_toast.dart';
 import 'package:calda_app/config/app_themes.dart';
-import 'package:calda_app/pages/game/setup_player_page.dart';
+import 'package:calda_app/pages/game/game_setup_page.dart';
 import 'package:calda_app/pages/home/home_page.dart';
 import 'package:calda_app/pages/settings/settings_page.dart';
 import 'package:calda_app/pages/signin/signin_page.dart';
@@ -62,10 +62,10 @@ class App extends HookWidget {
               theme: HomeTheme(),
               page: SettingsPage(),
             );
-          case SetupPlayerPage.routeName:
+          case GameSetupPage.routeName:
             return _buildPage(
               theme: HomeTheme(),
-              page: SetupPlayerPage(),
+              page: GameSetupPage(),
             );
           default:
             return MaterialPageRoute(

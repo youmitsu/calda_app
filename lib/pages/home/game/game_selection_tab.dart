@@ -1,6 +1,7 @@
 import 'package:calda_app/config/app_colors.dart';
 import 'package:calda_app/config/app_themes.dart';
 import 'package:calda_app/model/enum/game_type.dart';
+import 'package:calda_app/pages/game/game_setup_page.dart';
 import 'package:calda_app/pages/home/game/state/game_selection_tab_state.dart';
 import 'package:calda_app/pages/settings/settings_page.dart';
 import 'package:flutter/cupertino.dart';
@@ -65,10 +66,18 @@ class GameSelectionTab extends HookWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton.extended(
-        onPressed: () {},
+        onPressed: () {
+          if (state.isValid) {
+            Navigator.of(context).pushNamed(GameSetupPage.routeName);
+          }
+        },
         icon: Icon(Icons.check),
-        label: Text('ゲームを始める'),
+        label: Text('スタート'),
         backgroundColor: _buildFABColor(context, state.isValid),
+        elevation: 1,
+        focusElevation: 1,
+        hoverElevation: 1,
+        highlightElevation: 1,
       ),
     );
   }
