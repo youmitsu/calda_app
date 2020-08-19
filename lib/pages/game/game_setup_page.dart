@@ -8,6 +8,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+final isExpandedProvider = StateProvider((_) => false);
+
 class GameSetupPage extends HookWidget {
   static const String routeName = "/setup";
 
@@ -57,14 +59,28 @@ class _GameFormatCard extends HookWidget {
       gameSelectionTabStateNotifierProvider.state
           .select((value) => value.playerType.index + 1),
     );
+    final isExpanded = useProvider(isExpandedProvider).state;
     return CommonCard(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-      margin: const EdgeInsets.symmetric(horizontal: 10),
+      padding: const EdgeInsets.fromLTRB(20, 20, 20, 10),
+      margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
       child: Column(
         children: <Widget>[
           _buildLine(context, 'GAME', gameType.toDisplayStr()),
           const SizedBox(width: double.infinity, height: 15),
           _buildLine(context, 'PLAYER', playerType.toString()),
+          Visibility(
+            visible: isExpanded,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                const SizedBox(width: double.infinity, height: 15),
+                _buildLine(context, 'DARTS IN', 'OPEN'),
+                const SizedBox(width: double.infinity, height: 15),
+                _buildLine(context, 'DARTS OUT', 'DOUBLE'),
+              ],
+            ),
+          ),
+          _DetailToggleBtn(),
         ],
       ),
     );
@@ -87,23 +103,83 @@ class _GameFormatCard extends HookWidget {
   }
 }
 
+class _DetailToggleBtn extends HookWidget {
+  @override
+  Widget build(BuildContext context) {
+    final isExpanded = useProvider(isExpandedProvider);
+    final animationController =
+        useAnimationController(duration: Duration(milliseconds: 200));
+    return InkWell(
+      onTap: () {
+        isExpanded.state = !isExpanded.state;
+      },
+      borderRadius: BorderRadius.circular(2),
+      child: Container(
+        margin: const EdgeInsets.only(top: 6),
+        padding: const EdgeInsets.all(2),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.only(left: 2.0),
+              child: Text(
+                '詳細設定',
+                style: Theme.of(context)
+                    .textTheme
+                    .light999999Dark999999
+                    .fontSize14,
+              ),
+            ),
+            _buildArrowIcon(isExpanded.state),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildArrowIcon(bool isExpanded) {
+    if (isExpanded) {
+      return Icon(
+        Icons.arrow_drop_up,
+      );
+    }
+    return Icon(
+      Icons.arrow_drop_down,
+    );
+  }
+}
+
 class _PlayersSection extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final player = useProvider(gameSelectionTabStateNotifierProvider.state
         .select((value) => value.playerType));
     return Container(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: _buildPlayerIcons(player),
+      child: Wrap(
+        spacing: 18,
+        children: _buildPlayerIcons(context, player),
       ),
     );
   }
 
-  List<Widget> _buildPlayerIcons(PlayerType player) {
+  List<Widget> _buildPlayerIcons(BuildContext context, PlayerType player) {
     return List.generate(
       player.index + 1,
-      (index) => _PlayerIcon(),
+      (index) => Column(
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          Padding(
+            padding: const EdgeInsets.only(top: 12.0, bottom: 10.0),
+            child: Text(
+              'Player${index + 1}',
+              style:
+                  Theme.of(context).textTheme.light000000Dark000000.fontSize22,
+            ),
+          ),
+          _PlayerIcon(),
+        ],
+      ),
     );
   }
 }
@@ -112,6 +188,11 @@ class _PlayerIcon extends HookWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      padding: const EdgeInsets.fromLTRB(10, 10, 10, 30),
+      decoration: BoxDecoration(
+        color: BackgroundColor.greyDDDDDD,
+        borderRadius: BorderRadius.circular(5.0),
+      ),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
@@ -120,15 +201,16 @@ class _PlayerIcon extends HookWidget {
               shape: BoxShape.circle,
               color: ButtonColor.grey,
             ),
-            width: 70,
-            height: 70,
+            width: 65,
+            height: 65,
+            margin: const EdgeInsets.fromLTRB(20, 20, 20, 0),
           ),
           Padding(
-            padding: const EdgeInsets.only(top: 5.0),
+            padding: const EdgeInsets.only(top: 6.0),
             child: Text(
               'You',
               style:
-                  Theme.of(context).textTheme.light000000DarkFFFFFF.fontSize16,
+                  Theme.of(context).textTheme.light000000DarkFFFFFF.fontSize18,
             ),
           ),
         ],

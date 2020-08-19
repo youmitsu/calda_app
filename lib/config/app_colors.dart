@@ -62,6 +62,8 @@ class _AllColors {
 class BackgroundColor {
   static const Color light = _AllColors.greyF5F5F5;
   static const Color dark = _AllColors.black;
+
+  static const Color greyDDDDDD = Color(0xffdddddd);
 }
 
 /// テキストに使用するカラー
